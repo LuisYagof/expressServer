@@ -1,0 +1,22 @@
+{
+  "name": "expressserver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "expressServer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuisYagof/expressServer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LuisYagof/expressServer/issues"
+  },
+  "homepage": "https://github.com/LuisYagof/expressServer#readme"
+}
