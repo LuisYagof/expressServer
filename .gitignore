@@ -1,6 +1,5 @@
 node_modules/
 Public/
-package-lock.json
 express-init-firebase-adminsdk-6mdt1-1c7082f64a.json
 words.json
 words2.json
