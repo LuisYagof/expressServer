@@ -45,7 +45,7 @@ server.get('/words', (req, res) => {
 server.post('/words', (req, res) => {
     db.ref('words/' + next)
         .set(req.body.neword)
-    res.send()
+    res.send(JSON.stringify({word: req.body.neword, id: next}))
 })
 
 // ------------PETICIÓN DE EDICIÓN--------------
@@ -53,7 +53,7 @@ server.post('/words', (req, res) => {
 server.put('/words', async (req, res) => {
     await db.ref('words/' + req.body.id)
         .set(req.body.neword)
-    res.send()
+    res.send(JSON.stringify({word: req.body.neword, id: req.body.id}))
 })
 
 // ------------PETICIÓN DE BORRADO--------------
@@ -61,7 +61,7 @@ server.put('/words', async (req, res) => {
 server.delete('/words', async (req, res) => {
     await db.ref('words/' + req.body.id)
         .remove()
-    res.send()
+    res.send(JSON.stringify({id: req.body.id}))
 })
 
 // -------------LEVANTAR SERVIDOR---------------
