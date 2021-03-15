@@ -48,5 +48,21 @@ server.post('/words', (req, res) => {
     res.send()
 })
 
+// ------------PETICIÓN DE EDICIÓN--------------
+
+server.put('/words', async (req, res) => {
+    await db.ref('words/' + req.body.id)
+        .set(req.body.neword)
+    res.send()
+})
+
+// ------------PETICIÓN DE BORRADO--------------
+
+server.delete('/words', async (req, res) => {
+    await db.ref('words/' + req.body.id)
+        .remove()
+    res.send()
+})
+
 server.listen(listenPort,
     () => console.log(`Server started listening on ${listenPort}`))
