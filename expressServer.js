@@ -1,5 +1,4 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 
 const server =  express()
 const listenPort = 8080;
@@ -20,6 +19,8 @@ admin.initializeApp({
     databaseURL: "https://express-init-default-rtdb.europe-west1.firebasedatabase.app"
 });
 
+// ----------ATAJOS OPCIONALES DE FB-------------
+
 const db = admin.database();
 // const ref = db.ref("restricted_access/secret_document");
 // ref.once("value", function(snapshot) {
@@ -28,20 +29,21 @@ const db = admin.database();
 
 // ------------PETICIÓN DE LECTURA--------------
 
+let next = 0;
 
 server.get('/words', (req, res) => {
     db.ref('words')
-    .on('value', (response) => {
+    .once('value', (response) => {
         res.send(response.val())
-        // let data = response.val()
-        // next = data.length
+        let data = response.val()
+        next = data.length
     })
 })
 
 // -----------PETICIÓN DE ESCRITURA-------------
 
 server.post('/words', (req, res) => {
-    db.ref('words/5')
+    db.ref('words/' + next)
         .set(req.body.neword)
     res.send()
 })
