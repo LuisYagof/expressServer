@@ -64,5 +64,7 @@ server.delete('/words', async (req, res) => {
     res.send()
 })
 
+// -------------LEVANTAR SERVIDOR---------------
+
 server.listen(listenPort,
     () => console.log(`Server started listening on ${listenPort}`))
