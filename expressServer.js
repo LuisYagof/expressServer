@@ -29,23 +29,24 @@ const db = admin.database();
 
 // ------------PETICIÓN DE LECTURA--------------
 
-let next = 0;
-
 server.get('/words', (req, res) => {
     db.ref('words')
     .once('value', (response) => {
         res.send(response.val())
-        let data = response.val()
-        next = data.length
     })
 })
 
 // -----------PETICIÓN DE ESCRITURA-------------
 
-server.post('/words', (req, res) => {
-    db.ref('words/' + next)
+server.post('/words', async (req, res) => {
+    let length = 0;
+    await db.ref('words/').once('value', (response) => {
+        length = response.val().length
+        return length
+    })
+    db.ref('words/' + length)
         .set(req.body.neword)
-    res.send(JSON.stringify({word: req.body.neword, id: next}))
+    res.send(JSON.stringify({word: req.body.neword, id: length}))
 })
 
 // ------------PETICIÓN DE EDICIÓN--------------
